@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoapp">
+    <head>
+        <title>To Do Application</title>
+        <link href="css/bootstrap.css" rel="stylesheet"/>
+        <link href="css/app.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <script src="js/lib/angular.min.js" ></script>
+        <script src="js/lib/localforage.min.js" ></script>
+        <script src="js/lib/ngStorage.min.js"></script>
+        <script src="js/lib/ui-bootstrap-tpls-0.9.0.js"></script>
+        <script src="js/app/todo/application.js"></script>
+        <script src="js/app/todo/service.js"></script>
+        <script src="js/app/todo/controller.js"></script>
+
+        <div class="generic-container" ng-controller="todocontroller as controller" ng-init="controller.prepareDashboard()">
+		    <div class="panel panel-default">
+		        <!-- Default panel contents -->
+		        <div class="panel-heading"><span class="lead">Welcome to the To-Do Application!</span></div>
+				<div class="panel-body">
+			        <div class="formcontainer">
+			            <div class="alert alert-success" role="alert" ng-if="controller.successMessage">{{controller.successMessage}}</div>
+			            <div class="alert alert-danger" role="alert" ng-if="controller.errorMessage">{{controller.errorMessage}}</div>
+			            <form ng-submit="controller.submitToDoForm()" name="toDoForm" class="form-horizontal" novalidate autocomplete="off">
+			            	<!-- error messages -->
+			            	<div class="alert alert-danger" role="alert" ng-show="controller.validateToDoForm && toDoForm.$invalid">
+    							<h4>ERROR</h4> 
+                                <ul>
+                                	<li ng-show="toDoForm.desc.$error.required">Description is required</li>
+	    							<li ng-show="toDoForm.status.$error.required">Please select a Status</li>
+                                </ul>
+  							</div>
+			                <input type="hidden" ng-model="controller.item.id"></input>
+			                <div class="row">
+			                    <div class="form-group col-md-12">
+			                        <label class="col-md-2 control-lable" for="desc">Description<span style="color:red">*</span></label>
+			                        <div class="col-md-7">
+			                            <input type="text" ng-model="controller.item.description" name="desc" id="desc" class="form-control input-sm" placeholder="Describe your problem" required></input>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                    <div class="form-group col-md-12">
+			                        <label class="col-md-2 control-lable" for="status">Status<span style="color:red">*</span></label>
+			                        <div class="col-md-7">
+										 <select name="status" id="status" class="form-control input-sm" ng-model="controller.item.status" required>
+										 	<option value="">---Please select a status---</option>
+     										<option value="NEW">New</option>
+      										<option value="INPROGRESS">In Progress</option>
+      										<option value="CLOSED">Closed</option>
+    									</select>
+			                        </div>
+			                    </div>
+			                </div>
+			                <div class="row">
+			                    <div class="form-actions floatRight">
+			                        <input type="submit"  value="{{!controller.item.id ? 'Create' : 'Update'}}" class="btn btn-primary btn-sm"></input>
+			                        <button type="button" ng-click="controller.reset()" class="btn btn-warning btn-sm" ng-disabled="toDoForm.$pristine">Reset</button>
+			                    </div>
+			                </div>
+			            </form>
+		    	    </div>
+				</div>	
+		    </div>
+		    <div class="panel panel-default">
+		        <div class="panel-heading"><span class="lead">List of Items</span></div>
+				<div class="panel-body">
+					<div class="table-responsive">
+				        <table class="table table-hover">
+				            <thead>
+				            <tr>
+				                <th>ID</th>
+				                <th>DESCRIPTION</th>
+				                <th><a ng-click="controller.sortType = 'status'; controller.sortReverse = !controller.sortReverse">
+            							STATUS
+            							<span ng-show="controller.sortType == 'status' && !controller.sortReverse" class="glyphicon glyphicon-arrow-up"></span>
+							            <span ng-show="controller.sortType == 'status' && controller.sortReverse" class="glyphicon glyphicon-arrow-down"></span>
+							        </a>
+							    </th>
+				                <th width="100"></th>
+				                <th width="100"></th>
+				            </tr>
+				            </thead>
+				            <tbody>
+				            <tr ng-repeat="u in controller.items.slice(((controller.currentPage-1)*controller.itemsPerPage), ((controller.currentPage)*controller.itemsPerPage)) | orderBy:controller.sortType:controller.sortReverse">
+				                <td>{{u.id}}</td>
+				                <td>{{u.description}}</td>
+				                <td>{{u.status}}</td>
+				                <td><button type="button" ng-click="controller.editItem(u.id)" class="btn btn-success custom-width">Edit</button></td>
+				                <td><button type="button" ng-click="controller.deleteItem(u.id)" class="btn btn-danger custom-width">Delete</button></td>
+				            </tr>
+				            </tbody>
+				        </table>
+				        <div>
+				        	<div class="floatLeft">
+				        		View <select name="viewby" id="viewby" ng-model="controller.viewby" ng-change="controller.setItemsPerPage(controller.viewby)">
+						        	<option value="3">3</option>
+						        	<option value="5">5</option>
+						        	<option value="10">10</option>
+				        		</select> records at a time.
+				        	</div>
+				        	<div>
+				        		<pagination page="controller.currentPage" total-items="controller.totalItems" on-select-page="controller.pageChanged(page)" class="pagination-sm center-block" items-per-page="controller.itemsPerPage"></pagination>
+				        	</div>
+				        </div>
+					</div>
+				</div>
+		    </div>
+		</div>
+    </body>
+</html>
