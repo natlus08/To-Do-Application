@@ -32,13 +32,13 @@ public class ToDo implements Serializable{
 	private String description;
 	
 	@Column(name="STATUS", nullable=false)
-	private String status;
+	private Boolean status;
 	
 	@Transient
 	private String errorMessage;
 	
 	@PersistenceConstructor
-	public ToDo(Long id, String description, String status) {
+	public ToDo(Long id, String description, Boolean status) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -53,11 +53,11 @@ public class ToDo implements Serializable{
 		this.description = description;
 	}
 
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 

@@ -9,10 +9,9 @@ angular.module('todoapp').factory('todoservice',
                 resetMessage: resetMessage,
                 createItem: createItem,
                 updateItem: updateItem,
-                deleteItem: deleteItem,
+                deleteItems: deleteItems,
                 loadAllItems: loadAllItems,
                 getAllItems: getAllItems,
-                getItem: getItem
             };
 
             return factory;
@@ -53,9 +52,9 @@ angular.module('todoapp').factory('todoservice',
                 return deferred.promise;
             }
             
-            function deleteItem(id) {
+            function deleteItems() {
                 var deferred = $q.defer();
-                $http.delete(urls.API+'deleteitem/' + id)
+                $http.delete(urls.API+'deleteitems')
                     .then(
                         function (response) {
                             deferred.resolve(response.data);
@@ -84,20 +83,6 @@ angular.module('todoapp').factory('todoservice',
             
             function getAllItems(){
                 return $localStorage.items;
-            }
-            
-            function getItem(id) {
-                var deferred = $q.defer();
-                $http.get(urls.API+'getitem/' + id)
-                    .then(
-                        function (response) {
-                            deferred.resolve(response.data);
-                        },
-                        function (errResponse) {
-                            deferred.reject(errResponse);
-                        }
-                    );
-                return deferred.promise;
             }
         }
     ]);

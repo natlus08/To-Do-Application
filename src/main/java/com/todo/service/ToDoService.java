@@ -14,12 +14,10 @@ public interface ToDoService {
 
 	void createItem (ToDo toDo) throws ToDoException;
 
-	ToDo findItemByID(Long id) throws ToDoException;
-
 	ToDo editItem(ToDo item) throws ToDoException;
 
 	List<ToDo> readAll() throws ToDoException;
 	
-	void deleteItem (Long id) throws ToDoException;
+	void deleteItems() throws ToDoException;
 	
 }

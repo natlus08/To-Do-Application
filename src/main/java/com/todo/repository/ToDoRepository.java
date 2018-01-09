@@ -7,6 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 import com.todo.model.ToDo;
 @Transactional
 public interface ToDoRepository extends JpaRepository<ToDo, Long> {
-	
-	
+    void removeByStatus(Boolean status);
 }

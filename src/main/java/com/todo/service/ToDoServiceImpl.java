@@ -31,16 +31,6 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 
 	@Override
-	public ToDo findItemByID(Long id) throws ToDoException {
-		ToDo item = toDoRepository.findOne(id);
-		if (item == null) {
-			throw new ToDoException("Item with id " + id
-					+ " not found.");
-		}
-		return item;
-	}
-
-	@Override
 	public ToDo editItem(ToDo item) throws ToDoException {
 		ToDo updatedItem = null;
 		if (toDoRepository.exists(item.getId())) {
@@ -53,8 +43,8 @@ public class ToDoServiceImpl implements ToDoService {
 	}
 	
 	@Override
-	public void deleteItem(Long id) throws ToDoException {
-		toDoRepository.delete(id);
+	public void deleteItems() throws ToDoException {
+		toDoRepository.removeByStatus(true);
 	}
 
 	@Override

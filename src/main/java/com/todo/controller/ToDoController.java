@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,16 +44,6 @@ public class ToDoController {
 	}
 	
 	/**
-	 * GET /read --> Find a item by id from the database.
-	 * @throws ToDoException 
-	 */
-	@GetMapping("/getitem/{id}")
-	public ResponseEntity<?> read(@PathVariable("id") Long id) throws ToDoException {
-		ToDo item = toDoService.findItemByID(id);
-		return new ResponseEntity<ToDo>(item, HttpStatus.OK);
-	}
-	
-	/**
 	 * PUT /update --> Update a item and save it in the database.
 	 * @throws ToDoException 
 	 */
@@ -65,12 +54,12 @@ public class ToDoController {
 	}
 	
 	/**
-	 * DELETE /delete --> Delete a item by id from the database.
+	 * DELETE /delete --> Delete all itemes by status from the database.
 	 * @throws ToDoException 
 	 */
-	@DeleteMapping("/deleteitem/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") Long id) throws ToDoException {
-		toDoService.deleteItem(id);
+	@DeleteMapping("/deleteitems")
+	public ResponseEntity<?> delete() throws ToDoException {
+		toDoService.deleteItems();
 		return new ResponseEntity<String>(HttpStatus.CREATED);
 	}
 	
