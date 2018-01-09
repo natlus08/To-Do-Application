@@ -12,7 +12,7 @@ import com.todo.model.ToDo;
  */
 public interface ToDoService {
 
-	void createItem (ToDo toDo) throws ToDoException;
+	ToDo createItem (ToDo toDo) throws ToDoException;
 
 	ToDo editItem(ToDo item) throws ToDoException;
 

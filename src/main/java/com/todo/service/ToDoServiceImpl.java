@@ -26,8 +26,8 @@ public class ToDoServiceImpl implements ToDoService {
 	private Environment environment;
 	
 	@Override
-	public void createItem(ToDo item) throws ToDoException {
-		toDoRepository.save(item);
+	public ToDo createItem(ToDo item) throws ToDoException {
+		return toDoRepository.save(item);
 	}
 
 	@Override

@@ -5,8 +5,6 @@ angular.module('todoapp').factory('todoservice',
         function ($localStorage, $http, $q, urls) {
 
             var factory = {
-                getMessage: getMessage,
-                resetMessage: resetMessage,
                 createItem: createItem,
                 updateItem: updateItem,
                 deleteItems: deleteItems,
@@ -15,14 +13,6 @@ angular.module('todoapp').factory('todoservice',
             };
 
             return factory;
-            
-            function getMessage(){
-            	return $localStorage.message;
-            }
-            
-            function resetMessage(){
-            	$localStorage.message = '';
-            }
             
             function createItem(item) {
                 var deferred = $q.defer();

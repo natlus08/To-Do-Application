@@ -39,8 +39,8 @@ public class ToDoController {
 	 */
 	@PostMapping("/createitem")
 	public ResponseEntity<?> create(@RequestBody ToDo item) throws ToDoException {
-		toDoService.createItem(item);
-		return new ResponseEntity<String>(HttpStatus.CREATED);
+		ToDo newItem = toDoService.createItem(item);
+		return new ResponseEntity<ToDo>(newItem, HttpStatus.OK);
 	}
 	
 	/**
@@ -49,12 +49,12 @@ public class ToDoController {
 	 */
 	@PutMapping("/updateitem")
 	public ResponseEntity<?> update(@RequestBody ToDo item) throws ToDoException {
-		ToDo updatedTicket = toDoService.editItem(item);
-		return new ResponseEntity<ToDo>(updatedTicket, HttpStatus.OK);
+		ToDo updatedItem = toDoService.editItem(item);
+		return new ResponseEntity<ToDo>(updatedItem, HttpStatus.OK);
 	}
 	
 	/**
-	 * DELETE /delete --> Delete all itemes by status from the database.
+	 * DELETE /delete --> Delete all items by status from the database.
 	 * @throws ToDoException 
 	 */
 	@DeleteMapping("/deleteitems")
