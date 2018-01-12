@@ -1,0 +1,17 @@
+/dist
+/node_modules
+.tmp
+.settings
+/.settings
+.project
+.classpath
+.DS_Store
+.idea
+*.iml
+*/target
+*/bin
+/target/
+.factorypath
+*.log
+*.jar
+*.class

@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('todoapp').factory('todoservice',
-    ['$localStorage', '$http', '$q', 'urls',
-        function ($localStorage, $http, $q, urls) {
+    ['$localStorage', '$http', '$q', '$location',
+        function ($localStorage, $http, $q, $location) {
+    	
+    		var apiContextPath = $location.absUrl()+'/api/';
 
             var factory = {
                 createItem: createItem,
@@ -16,7 +18,7 @@ angular.module('todoapp').factory('todoservice',
             
             function createItem(item) {
                 var deferred = $q.defer();
-                $http.post(urls.API+'createitem', item)
+                $http.post(apiContextPath+'createitem', item)
                     .then(
                         function (response) {
                             deferred.resolve(response.data);
@@ -30,7 +32,7 @@ angular.module('todoapp').factory('todoservice',
 
             function updateItem(item) {
                 var deferred = $q.defer();
-                $http.put(urls.API+'updateitem', item)
+                $http.put(apiContextPath+'updateitem', item)
                     .then(
                         function (response) {
                             deferred.resolve(response.data);
@@ -44,7 +46,7 @@ angular.module('todoapp').factory('todoservice',
             
             function deleteItems() {
                 var deferred = $q.defer();
-                $http.delete(urls.API+'deleteitems')
+                $http.delete(apiContextPath+'deleteitems')
                     .then(
                         function (response) {
                             deferred.resolve(response.data);
@@ -58,7 +60,7 @@ angular.module('todoapp').factory('todoservice',
             
             function loadAllItems() {
                 var deferred = $q.defer();
-                $http.get(urls.API+'getallitems')
+                $http.get(apiContextPath+'getallitems')
                     .then(
                         function (response) {
                             $localStorage.items = response.data;
