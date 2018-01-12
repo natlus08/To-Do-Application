@@ -1,9 +1,0 @@
-com\todo\repository\ToDoRepository.class
-com\todo\configuration\JpaConfiguration.class
-com\todo\exception\ToDoException.class
-com\todo\controller\ToDoLandingController.class
-com\todo\service\ToDoService.class
-com\todo\boot\ToDoBoot.class
-com\todo\controller\ToDoController.class
-com\todo\service\ToDoServiceImpl.class
-com\todo\model\ToDo.class
