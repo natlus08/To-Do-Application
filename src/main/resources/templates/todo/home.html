@@ -1,6 +1,5 @@
 <html ng-app="todoapp">
   <head>
-  	<link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/app.css" rel="stylesheet"/>
     <title>My To-Do Application</title>
   </head>
@@ -24,9 +23,8 @@
       </ul>
       <form>
         <input class="add-input" placeholder="I need to..." type="text" ng-model="desc" ng-model-instant />
-        <button class="add-btn" ng-click="addItem()"><h2>Add</h2></button>
+        <button class="add-btn" ng-click="addItem()" ng-disabled="!desc.length"><h2>Add</h2></button>
       </form>
-      
       <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>
     </div>
   </body>

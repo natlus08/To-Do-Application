@@ -1,5 +1,3 @@
-/* @import "compass/css3"; */
-
 body {
   background: #13756D;
 }
@@ -11,14 +9,14 @@ body {
 
 h2 {
   font-size: 2em;
-  
   font-family: megrim, fantasy;
   background: #1CA89C;
   padding: 40px;
   margin: 0;
   color: #333;
   text-align: center;
- }
+}
+
 .emphasis {
   font-family: vast-shadow, sans-serif;
   font-size: 4em;
@@ -33,8 +31,8 @@ li {
   font-family: megrim, fantasy;
   font-size: 2em;
   padding: 40px;
-  
-  background: #65d8cb; /* Old browsers */
+  background: #65d8cb;
+  /* Old browsers */
   background: -webkit-gradient(linear, 0 0, 0 100%, from(#65d8cb), to(#72f4e9));
   background: -webkit-linear-gradient(#65d8cb 0%, #72f4e9 100%);
   background: -moz-linear-gradient(#65d8cb 0%, #72f4e9 100%);
@@ -57,7 +55,6 @@ li input[type="checkbox"] {
 
 .add-input {
   width: 60%;
-  height: 20px;
   float: left;
   border: none;
   padding: 40px 0;
@@ -65,19 +62,20 @@ li input[type="checkbox"] {
   font-family: megrim, fantasy;
   text-indent: 55px;
 }
+
 .add-btn {
   width: 40%;
   border: none;
   background: #29F4E3;
   padding: 0;
   height: 100px;
-  h2 {
-   background: #29F4E3;
-   padding: 0;
-   font-size: 4em;
-   font-family: megrim, fantasy;
-   color: #333;
-  }
+}
+
+.add-btn h2 {
+  background: #29F4E3;
+  font-size: 4em;
+  font-family: megrim, fantasy;
+  color: #333;
 }
 
 .clear-btn {
